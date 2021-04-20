@@ -701,7 +701,7 @@ void CGraphPanel::OnTextChanged(Panel *panel, const char *text)
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-void CGraphPanel::SetAxisLabels(Color c, char *max, char *mid, char *min)
+void CGraphPanel::SetAxisLabels(Color c, const char *max, const char *mid, const char *min)
 {
 	Label *lab;
 	lab= GetLabel("AxisMax");

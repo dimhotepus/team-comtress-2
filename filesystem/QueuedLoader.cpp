@@ -1007,7 +1007,7 @@ void CQueuedLoader::AddMapResource( const char *pFilename )
 	V_FixSlashes( szFilename );
 	V_strlower( szFilename );
 
-	if ( m_AdditionalResources.Find( szFilename ) != UTL_INVAL_SYMBOL )
+	if ( m_AdditionalResources.Find( szFilename ) != CUtlSymbol{} )
 	{
 		// already added
 		return;

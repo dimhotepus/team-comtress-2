@@ -1471,12 +1471,11 @@ void CDbgMemAlloc::DumpStatsFileBase( char const *pchFileBase )
 	static int s_FileCount = 0;
 	if (m_OutputFunc == DefaultHeapReportFunc)
 	{
-		char *pPath = "";
-		if ( IsX360() )
-		{
-			pPath = "D:\\";
-		}
-
+#ifndef _X360
+		constexpr char pPath[]{ "" };
+#else
+		constexpr char pPath[]{ "D:\\" };
+#endif
 #if defined( _MEMTEST ) && defined( _X360 )
 		char szXboxName[32];
 		strcpy( szXboxName, "xbox" );

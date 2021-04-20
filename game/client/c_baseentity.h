@@ -1155,9 +1155,9 @@ public:
 #ifdef _DEBUG
 	void FunctionCheck( void *pFunction, const char *name );
 
-	ENTITYFUNCPTR TouchSet( ENTITYFUNCPTR func, char *name ) 
+	ENTITYFUNCPTR TouchSet( ENTITYFUNCPTR func, const char *name ) 
 	{ 
-		//COMPILE_TIME_ASSERT( sizeof(func) == 4 );
+		COMPILE_TIME_ASSERT( sizeof(func) == sizeof(void*) );
 		m_pfnTouch = func; 
 		//FunctionCheck( *(reinterpret_cast<void **>(&m_pfnTouch)), name ); 
 		return func;

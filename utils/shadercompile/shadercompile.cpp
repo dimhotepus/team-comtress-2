@@ -406,7 +406,7 @@ char * ConsumeCharacters( char *szString, T pred )
 	return szString;
 }
 
-char * FindNext( char *szString, char *szSearchSet )
+char * FindNext( char *szString, const char *szSearchSet )
 {
 	bool bFound = (szString == NULL);
 	char *szNext = NULL;
@@ -426,7 +426,7 @@ char * FindNext( char *szString, char *szSearchSet )
 	return bFound ? szNext : ( szString + strlen( szString ) );
 }
 
-char * FindLast( char *szString, char *szSearchSet )
+char * FindLast( char *szString, const char *szSearchSet )
 {
 	bool bFound = (szString != NULL);
 	char *szNext = NULL;
@@ -1177,10 +1177,11 @@ void MySystem( char const * const pCommand, CmdSink::IResponse **ppResponse )
 	ZeroMemory( &si, sizeof(si) );
 	si.cb = sizeof(si);
 	ZeroMemory( &pi, sizeof(pi) );
+	char cmd[]{ "temp.bat" };
 	
 	// Start the child process. 
 	if( !CreateProcess( NULL, // No module name (use command line). 
-		"temp.bat", // Command line. 
+		cmd, // Command line. 
 		NULL,             // Process handle not inheritable. 
 		NULL,             // Thread handle not inheritable. 
 		FALSE,            // Set handle inheritance to FALSE. 
@@ -1335,9 +1336,7 @@ public:
 	void HandleCommandResponse( CfgProcessor::ComboHandle hCombo, CmdSink::IResponse *pResponse );
 
 public:
-	using CParallelProcessorBase::ThisParallelProcessorBase_t::Run;
-
-public:
+	using CParallelProcessorBase<CWorkerAccumState<TMutexType>>::ThisParallelProcessorBase_t::Run;
 	bool OnProcess();
 	bool OnProcessST();
 

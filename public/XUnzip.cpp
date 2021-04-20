@@ -667,7 +667,7 @@ const char * const z_errmsg[10] = { // indexed by 2-zlib_error
 
 #ifdef DEBUG
   int z_verbose = 0;
-  void z_error (char *m) {fprintf(stderr, "%s\n", m); exit(1);}
+  void z_error (const char *m) {fprintf(stderr, "%s\n", m); exit(1);}
 #  define Assert(cond,msg) {if(!(cond)) z_error(msg);}
 #  define Trace(x) {if (z_verbose>=0) fprintf x ;}
 #  define Tracev(x) {if (z_verbose>0) fprintf x ;}

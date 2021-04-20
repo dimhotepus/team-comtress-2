@@ -237,7 +237,7 @@ CWorkThreadPool::CWorkThreadPool( const char *pszThreadName )
 CWorkThreadPool::~CWorkThreadPool() 
 {
 	// If you hit this you probably didn't call StopWorkThreads() first
-	AssertMsg1( ( !m_bThreadsInitialized || m_bExiting ) && 0 == m_cThreadsRunning,
+	AssertMsg1( ( !m_bThreadsInitialized || m_bExiting ) && !m_cThreadsRunning,
 		"CWorkThreadPool::~CWorkThreadPool(): Thread pool %s shutdown incorrectly.\n",
 		m_szThreadNamePfx );
 
@@ -247,7 +247,7 @@ CWorkThreadPool::~CWorkThreadPool()
 		Assert( 0 == m_WorkThreads.Count() );
 	}
 
-	Assert( 0 == m_cThreadsRunning );
+	Assert( !m_cThreadsRunning );
 
 	// WARNING: We need to release any items left in the queues
 	CWorkItem *pWorkItem = NULL;

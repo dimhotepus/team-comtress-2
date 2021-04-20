@@ -563,73 +563,10 @@ template <VertexCompressionType_t T> bool CStudioRenderContext::R_AddVertexToMes
 	//        which hurts since VBs are in write-combined memory (See WriteCombineOrdering_t)
 	meshBuilder.Position3fv( vert.m_vecPosition.Base() );
 	meshBuilder.CompressedNormal3fv<T>( vert.m_vecNormal.Base() );
-	/*
-	if( vert.m_vecNormal.Length() < .9f || vert.m_vecNormal.Length() > 1.1f )
-	{
-	static CUtlStringMap<bool> errorMessages;
-	if( !errorMessages.Defined( pModelName ) )
-	{
-	errorMessages[pModelName] = true;
-	Warning( "MODELBUG %s: bad normal\n", pModelName );
-	Warning( "\tnormal %0.1f %0.1f %0.1f pos: %0.1f %0.1f %0.1f\n", 
-	vert.m_vecNormal.x, vert.m_vecNormal.y, vert.m_vecNormal.z, 
-	vert.m_vecPosition.x, vert.m_vecPosition.y, vert.m_vecPosition.z );
-	}
-	}
-	*/
 	meshBuilder.TexCoord2fv( 0, vert.m_vecTexCoord.Base() );
 
 	if (vertData->HasTangentData())
 	{
-		/*
-		if( bNeedsTangentSpace && pModelName && vertData->TangentS( idx ) )
-		{
-		const Vector4D &tangentS = *vertData->TangentS( idx );
-		float w = tangentS.w;
-		if( !( w == 1.0f || w == -1.0f ) )
-		{
-		static CUtlStringMap<bool> errorMessages;
-		if( !errorMessages.Defined( pModelName ) )
-		{
-		errorMessages[pModelName] = true;
-		Warning( "MODELBUG %s: bad tangent sign\n", pModelName );
-		Warning( "\tsign %0.1f at position %0.1f %0.1f %0.1f\n", 
-		w, vert.m_vecPosition.x, vert.m_vecPosition.y, vert.m_vecPosition.z );
-		}
-		}
-
-		float len = tangentS.AsVector3D().Length();
-		if( len < .9f || len > 1.1f )
-		{
-		static CUtlStringMap<bool> errorMessages;
-		if( !errorMessages.Defined( pModelName ) )
-		{
-		errorMessages[pModelName] = true;
-		Warning( "MODELBUG %s: bad tangent vector\n", pModelName );
-		Warning( "\ttangent: %0.1f %0.1f %0.1f with length %0.1f at position %0.1f %0.1f %0.1f\n", 
-		tangentS.x, tangentS.y, tangentS.z, 
-		len, 
-		vert.m_vecPosition.x, vert.m_vecPosition.y, vert.m_vecPosition.z );
-		}
-		}
-
-		#if 0
-		float dot = DotProduct( vert.m_vecNormal, tangentS.AsVector3D() );
-		if( dot > .95 || dot < -.95 )
-		{
-		static CUtlStringMap<bool> errorMessages;
-		if( !errorMessages.Defined( pModelName ) )
-		{
-		errorMessages[pModelName] = true;
-		// this is crashing for some reason. .need to investigate.
-		Warning( "MODELBUG %s: nearly colinear tangentS (%f %f %f) and normal (%f %f %f) at position %f %f %f Probably have 2 or more texcoords that are the same on a triangle.\n", 
-		pModelName, tangentS.x, tangentS.y, tangentS.y, vert.m_vecNormal.x, vert.m_vecNormal.y, vert.m_vecNormal.z, vert.m_vecPosition.x, vert.m_vecPosition.y, vert.m_vecPosition.z );
-		}
-		}
-		#endif
-		}
-		*/
-
 		// send down tangent S as a 4D userdata vect.
 		meshBuilder.CompressedUserData<T>( (*vertData->TangentS( idx )).Base() );
 	}

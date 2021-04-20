@@ -4726,7 +4726,7 @@ void CBaseEntity::PrecacheSoundHelper( const char *pName )
 		return;
 	}
 
-	if ( UTL_INVAL_SYMBOL == g_ModelSoundsSymbolHelper.Find( pName ) )
+	if ( CUtlSymbol{} == g_ModelSoundsSymbolHelper.Find( pName ) )
 	{
 		g_ModelSoundsSymbolHelper.AddString( pName );
 

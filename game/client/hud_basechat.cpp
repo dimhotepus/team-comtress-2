@@ -106,21 +106,21 @@ wchar_t* ConvertCRtoNL( wchar_t *str )
 
 void StripEndNewlineFromString( char *str )
 {
-	int s = strlen( str ) - 1;
+	ptrdiff_t s = strlen( str ) - 1;
 	if ( s >= 0 )
 	{
 		if ( str[s] == '\n' || str[s] == '\r' )
-			str[s] = 0;
+			str[s] = '\0';
 	}
 }
 
 void StripEndNewlineFromString( wchar_t *str )
 {
-	int s = wcslen( str ) - 1;
+	ptrdiff_t s = wcslen( str ) - 1;
 	if ( s >= 0 )
 	{
 		if ( str[s] == L'\n' || str[s] == L'\r' )
-			str[s] = 0;
+			str[s] = L'\0';
 	}
 }
 
@@ -864,7 +864,7 @@ void CBaseHudChat::MsgFunc_SayText2( bf_read &msg )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::MsgFunc_TextMsg( bf_read &msg )
 {
-	char szString[2048];
+	char szString[2048], szResult[2048];
 	int msg_dest = msg.ReadByte();
 
 	wchar_t szBuf[5][256];
@@ -873,7 +873,7 @@ void CBaseHudChat::MsgFunc_TextMsg( bf_read &msg )
 	for ( int i=0; i<5; ++i )
 	{
 		msg.ReadString( szString, sizeof(szString) );
-		char *tmpStr = hudtextmessage->LookupString( szString, &msg_dest );
+		const char *tmpStr = hudtextmessage->LookupString( szString, &msg_dest );
 		const wchar_t *pBuf = g_pVGuiLocalize->Find( tmpStr );
 		if ( pBuf )
 		{
@@ -886,9 +886,10 @@ void CBaseHudChat::MsgFunc_TextMsg( bf_read &msg )
 		{
 			if ( i )
 			{
-				StripEndNewlineFromString( tmpStr );  // these strings are meant for subsitution into the main strings, so cull the automatic end newlines
+				V_strncpy( szResult, tmpStr, sizeof(szResult) );
+				StripEndNewlineFromString( szResult );  // these strings are meant for subsitution into the main strings, so cull the automatic end newlines
 			}
-			g_pVGuiLocalize->ConvertANSIToUnicode( tmpStr, szBuf[i], sizeof(szBuf[i]) );
+			g_pVGuiLocalize->ConvertANSIToUnicode( szResult, szBuf[i], sizeof(szBuf[i]) );
 		}
 	}
 

@@ -198,10 +198,11 @@ void MySystem( char *pCommand )
 	ZeroMemory( &si, sizeof(si) );
 	si.cb = sizeof(si);
 	ZeroMemory( &pi, sizeof(pi) );
+	char cmd[]{ "temp.bat" };
 	
 	// Start the child process. 
 	if( !CreateProcess( NULL, // No module name (use command line). 
-		"temp.bat", // Command line. 
+		cmd, // Command line. 
 		NULL,             // Process handle not inheritable. 
 		NULL,             // Thread handle not inheritable. 
 		FALSE,            // Set handle inheritance to FALSE. 

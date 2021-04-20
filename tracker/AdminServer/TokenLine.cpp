@@ -101,7 +101,7 @@ char * TokenLine::GetToken(int i)
 
 // if the given parm is not present return NULL
 // otherwise return the address of the following token, or an empty string
-char* TokenLine::CheckToken(char * parm)
+const char* TokenLine::CheckToken(const char * parm)
 {
 	for (int i = 0 ; i < m_tokenNumber; i ++)
 	{
@@ -109,7 +109,7 @@ char* TokenLine::CheckToken(char * parm)
 			continue; 
 		if ( !strcmp (parm,m_token[i]) )
 		{
-			char * ret = m_token[i+1];	
+			const char * ret = m_token[i+1];	
 			// if this token doesn't exist, since index i was the last
 			// return an empty string
 			if ( (i+1) == m_tokenNumber ) ret = "";

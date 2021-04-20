@@ -1008,7 +1008,7 @@ does a varargs printf into a temp buffer, so I don't need to have
 varargs versions of all text functions.
 ============
 */
-static char *va( char *format, ... )
+static char *va( PRINTF_FORMAT_STRING const char *format, ... )
 {
 	va_list		argptr;
 	static char	string[8][512];

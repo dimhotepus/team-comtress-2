@@ -125,7 +125,7 @@ private:
 	friend CGraphsImage; // so it can use the intervals enum
 
 	vgui::Label *GetLabel(const char *name);
-	void SetAxisLabels(Color c,char *max,char *mid,char *min);
+	void SetAxisLabels(Color c, const char *max, const char *mid, const char *min);
 
 	// msg handlers 
 	MESSAGE_FUNC( OnCheckButton, "CheckButtonChecked" );

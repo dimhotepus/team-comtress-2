@@ -281,7 +281,7 @@ void CEmptyServerPlugin::SetCommandClient( int index )
 	m_iClientCommandIndex = index;
 }
 
-void ClientPrint( edict_t *pEdict, char *format, ... )
+void ClientPrint( edict_t *pEdict, PRINTF_FORMAT_STRING const char *format, ... )
 {
 	va_list		argptr;
 	static char		string[1024];

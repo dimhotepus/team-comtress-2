@@ -21,7 +21,7 @@ public:
 
 	char *	GetRestOfLine(int i);	// returns all chars after token i
 	int		CountToken();			// returns number of token
-	char *	CheckToken(char * parm);// returns token after token parm or ""
+	const char *	CheckToken(const char * parm);// returns token after token parm or ""
 	char *	GetToken(int i);		// returns token i
 	char *	GetLine();				// returns full line
 	bool	SetLine (const char * newLine);	// set new token line and parses it

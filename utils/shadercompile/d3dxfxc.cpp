@@ -162,7 +162,7 @@ namespace InterceptFxc
 			// Name is immediately after "/D"
 			char *pszFlagName = pszFlag + 2; // 2 = length of "/D"
 			// Value will be determined later
-			char *pszValue = "";
+			char *pszValue = nullptr;
 
 			if ( char *pchEq = strchr( pszFlag, '=' ) )
 			{
@@ -181,7 +181,7 @@ namespace InterceptFxc
 			else
 			{
 				// Reached end of command line
-				pszFlag = "";
+				*pszFlag = '\0';
 			}
 
 			// Shader model extraction
@@ -196,7 +196,7 @@ namespace InterceptFxc
 
 			// Fill the macro data
 			m.Name = pszFlagName;
-			m.Definition = pszValue;
+			m.Definition = pszValue ? pszValue : "";
 		}
 
 		// Add a NULL-terminator

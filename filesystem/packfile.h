@@ -151,7 +151,7 @@ public:
 
 	// Path management:
 	void SetPath( const CUtlSymbol &path ) { m_Path = path; }
-	const CUtlSymbol& GetPath() const	{ Assert( m_Path != UTL_INVAL_SYMBOL ); return m_Path; }
+	const CUtlSymbol& GetPath() const	{ Assert( m_Path != CUtlSymbol{} ); return m_Path; }
 	CUtlSymbol			m_Path;
 
 	// possibly embedded pack

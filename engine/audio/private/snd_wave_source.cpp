@@ -1863,7 +1863,7 @@ void MaybeReportMissingWav( char const *wav )
 
 	CUtlSymbol sym;
 	sym = wavErrors.Find( wav );
-	if ( UTL_INVAL_SYMBOL == sym )
+	if ( CUtlSymbol{} == sym )
 	{
 		// See if file exists
 		if ( g_pFullFileSystem->FileExists( wav ) )

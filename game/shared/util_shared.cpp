@@ -1228,7 +1228,7 @@ CBasePlayer* UTIL_PlayerByUserId( int userID )
 	return NULL;
 }
 
-char* ReadAndAllocStringValue( KeyValues *pSub, const char *pName, const char *pFilename )
+const char* ReadAndAllocStringValue( KeyValues *pSub, const char *pName, const char *pFilename )
 {
 	const char *pValue = pSub->GetString( pName, NULL );
 	if ( !pValue )

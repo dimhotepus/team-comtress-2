@@ -170,7 +170,7 @@ public:
 	// -----------------------------------------------------------
 	int										GetDisplayAdapterCount() const;
 	int										GetCurrentAdapter() const;
-	char									*GetDisplayDeviceName() const OVERRIDE;
+	const char									*GetDisplayDeviceName() const OVERRIDE;
 	void									GetDisplayAdapterInfo( int adapter, MaterialAdapterInfo_t& info ) const;
 	int										GetModeCount( int adapter ) const;
 	void									GetModeInfo( int adapter, int mode, MaterialVideoMode_t& info ) const;

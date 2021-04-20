@@ -1888,7 +1888,7 @@ int CShaderDeviceDx8::GetCurrentAdapter() const
 //-----------------------------------------------------------------------------
 // Returns the current adapter in use
 //-----------------------------------------------------------------------------
-char *CShaderDeviceDx8::GetDisplayDeviceName() 
+const char *CShaderDeviceDx8::GetDisplayDeviceName() 
 {
 	if( m_sDisplayDeviceName.IsEmpty() )
 	{
@@ -1904,7 +1904,7 @@ char *CShaderDeviceDx8::GetDisplayDeviceName()
 		}
 		m_sDisplayDeviceName = ident.DeviceName;
 	}
-	return m_sDisplayDeviceName.GetForModify();
+	return m_sDisplayDeviceName.Get();
 }
 
 

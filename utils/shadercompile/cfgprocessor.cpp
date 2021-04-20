@@ -87,53 +87,53 @@ template < typename T >
 class QuickArray : private std::vector < T >
 {
 public:
-	void Append( T const &e ) { push_back( e ); };
-	int Size( void ) const { return ( int ) size(); };
-	T const & Get( int idx ) const { return at( idx ); };
-	T & GetForEdit( int idx ) { return at( idx ); }
-	void Clear( void ) { clear(); }
-	T const * ArrayBase() const { return empty() ? NULL : &at( 0 ); }
-	T * ArrayBaseForEdit() { return empty() ? NULL : &at( 0 ); }
+	void Append( T const &e ) { this->push_back( e ); };
+	int Size( void ) const { return ( int )this->size(); };
+	T const & Get( int idx ) const { return this->at( idx ); };
+	T & GetForEdit( int idx ) { return this->at( idx ); }
+	void Clear( void ) { this->clear(); }
+	T const * ArrayBase() const { return this->empty() ? NULL : &this->at( 0 ); }
+	T * ArrayBaseForEdit() { return this->empty() ? NULL : &this->at( 0 ); }
 };
 
 template < typename T >
 class QuickStack : private std::vector < T >
 {
 public:
-	void Push( T const &e ) { push_back( e ); };
-	int Size( void ) const { return ( int ) size(); };
-	T const & Top( void ) const { return at( Size() - 1 ); };
-	void Pop( void ) { pop_back(); }
-	void Clear( void ) { clear(); }
+	void Push( T const &e ) { this->push_back( e ); };
+	int Size( void ) const { return ( int )this->size(); };
+	T const & Top( void ) const { return this->at( Size() - 1 ); };
+	void Pop( void ) { this->pop_back(); }
+	void Clear( void ) { this->clear(); }
 };
 
 template < typename K, typename V >
 class QuickMap : private std::map < K, V >
 {
 public:
-	void Append( K const &k, V const &v ) { insert( value_type( k, v ) ); };
-	int Size( void ) const { return ( int ) size(); };
+	void Append( K const &k, V const &v ) { this->insert( std::map < K, V >::value_type( k, v ) ); };
+	int Size( void ) const { return ( int ) this->size(); };
 	V const & GetLessOrEq( K &k, V const &v ) const;
-	V const & Get( K const &k, V const &v ) const { const_iterator it = find( k ); return ( it != end() ? it->second : v ); };
-	V & GetForEdit( K const &k, V &v ) { iterator it = find( k ); return ( it != end() ? it->second : v ); };
-	void Clear( void ) { clear(); }
+	V const & Get( K const &k, V const &v ) const { typename std::map < K, V >::const_iterator it = this->find( k ); return ( it != this->end() ? it->second : v ); };
+	V & GetForEdit( K const &k, V &v ) { typename std::map < K, V >::iterator it = this->find( k ); return ( it != this->end() ? it->second : v ); };
+	void Clear( void ) { this->clear(); }
 };
 
 template < typename K, typename V >
 V const & QuickMap< K, V >::GetLessOrEq( K &k, V const &v ) const
 {
-	const_iterator it = lower_bound( k );
+	typename std::map < K, V >::const_iterator it = this->lower_bound( k );
 	
-	if ( end() == it )
+	if ( this->end() == it )
 	{
-		if ( empty() )
+		if ( this->empty() )
 			return v;
 		-- it;
 	}
 
 	if ( k < it->first )
 	{
-		if ( begin() == it )
+		if ( this->begin() == it )
 			return v;
 		-- it;
 	}

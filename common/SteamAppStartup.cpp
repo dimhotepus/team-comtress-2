@@ -185,7 +185,7 @@ void LaunchSelfViaSteam(const char *params)
 		}
 
 		// exec steam.exe, in silent mode, with the launch app param
-		char *args[4] = { steamExe, "-silent", "-applaunch", NULL };
+		const char *args[4] = { steamExe, "-silent", "-applaunch", NULL };
 		_spawnv(_P_NOWAIT, steamExe, args);
 	}
 }

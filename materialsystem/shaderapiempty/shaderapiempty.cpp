@@ -316,7 +316,7 @@ public:
 	virtual void DoStartupShaderPreloading( void ) {}
 #endif
 
-	virtual char *GetDisplayDeviceName() OVERRIDE { return ""; }
+	virtual const char *GetDisplayDeviceName() OVERRIDE { return ""; }
 
 private:
 	CEmptyMesh m_Mesh;

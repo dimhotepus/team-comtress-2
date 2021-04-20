@@ -363,7 +363,7 @@ MAKE FACES
 WindingFromFace
 =============
 */
-winding_t	*WindingFromFace (dface_t *f, Vector& origin )
+winding_t	*WindingFromFace (dface_t *f, const Vector& origin )
 {
 	int			i;
 	int			se;
@@ -1306,11 +1306,9 @@ void WriteWorld (char *name, int iBump)
 	g_pFileSystem->Close( out );
 }
 
-void WriteRTEnv (char *name)
+void WriteRTEnv (const char *name)
 {
-	FileHandle_t out;
-
-	out = g_pFileSystem->Open( name, "w" );
+	FileHandle_t out = g_pFileSystem->Open( name, "w" );
 	if (!out)
 		Error ("Couldn't open %s", name);
 

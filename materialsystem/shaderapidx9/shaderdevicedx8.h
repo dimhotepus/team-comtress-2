@@ -188,7 +188,7 @@ public:
 	virtual int GetCurrentAdapter() const;
 	virtual void EnableNonInteractiveMode( MaterialNonInteractiveMode_t mode, ShaderNonInteractiveInfo_t *pInfo = NULL );
 	virtual void RefreshFrontBufferNonInteractive();
-	virtual char *GetDisplayDeviceName() OVERRIDE; 
+	virtual const char *GetDisplayDeviceName() OVERRIDE; 
 
 	// Alternative method for ib/vs
 	// NOTE: If this works, remove GetDynamicVertexBuffer/IndexBuffer

@@ -642,7 +642,7 @@ void CGameEventManager::RemoveListener(IGameEventListener2 *listener)
 
 int CGameEventManager::LoadEventsFromFile( const char * filename )
 {
-	if ( UTL_INVAL_SYMBOL == m_EventFiles.Find( filename ) )
+	if ( CUtlSymbol{} == m_EventFiles.Find( filename ) )
 	{
 		CUtlSymbol id = m_EventFiles.AddString( filename );
 		m_EventFileNames.AddToTail( id );

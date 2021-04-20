@@ -123,7 +123,7 @@ protected:
 		int &nId,
 		int &nParentId ) const;
 
-	CDmElement *CDmSmdSerializer::ReadSMD(
+		CDmElement *ReadSMD(
 		CUtlBuffer &inUtlBuf,
 		DmFileId_t nDmFileId,
 		const char *pszFilename,

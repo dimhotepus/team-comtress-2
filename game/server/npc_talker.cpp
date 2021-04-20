@@ -37,7 +37,7 @@ BEGIN_DATADESC( CNPCSimpleTalker )
 END_DATADESC()
 
 // array of friend names
-char *CNPCSimpleTalker::m_szFriends[TLK_CFRIENDS] = 
+const char *CNPCSimpleTalker::m_szFriends[TLK_CFRIENDS] = 
 {
 	"NPC_barney",
 	"NPC_scientist",
@@ -312,11 +312,10 @@ void CNPCSimpleTalker::Event_Killed( const CTakeDamageInfo &info )
 CBaseEntity	*CNPCSimpleTalker::EnumFriends( CBaseEntity *pPrevious, int listNumber, bool bTrace )
 {
 	CBaseEntity *pFriend = pPrevious;
-	char *pszFriend;
 	trace_t tr;
 	Vector vecCheck;
 
-	pszFriend = m_szFriends[ FriendNumber(listNumber) ];
+	const char* pszFriend = m_szFriends[ FriendNumber(listNumber) ];
 	while ( pszFriend != NULL && ((pFriend = gEntList.FindEntityByClassname( pFriend, pszFriend )) != NULL) )
 	{
 		if (pFriend == this || !pFriend->IsAlive())

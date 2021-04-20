@@ -1542,33 +1542,51 @@ int MergeBaseState(
 			switch ( pSrcData->GetType() )
 			{
 			case AT_FLOAT_ARRAY:
-				AppendData( CDmrArrayConst< float >( pSrcData ), CDmrArray< float >( pDstData ) );
+				{
+					CDmrArray< float > dest(pDstData);
+					AppendData(CDmrArrayConst< float >(pSrcData), dest );
+				}
 				break;
 			case AT_VECTOR2_ARRAY:
-				AppendData( CDmrArrayConst< Vector2D >( pSrcData ), CDmrArray< Vector2D >( pDstData ) );
+				{
+				  CDmrArray< Vector2D > dest(pDstData);
+					AppendData( CDmrArrayConst< Vector2D >( pSrcData ), dest );
+				}
 				break;
 			case AT_VECTOR3_ARRAY:
-				if ( i == nSrcPositionIndex )
 				{
-					AppendData( CDmrArrayConst< Vector >( pSrcData ), CDmrArray< Vector >( pDstData ), &pMat );
-				}
-				else if ( i == nSrcNormalIndex )
-				{
-					AppendData( CDmrArrayConst< Vector >( pSrcData ), CDmrArray< Vector >( pDstData ), &nMat );
-				}
-				else
-				{
-					AppendData( CDmrArrayConst< Vector >( pSrcData ), CDmrArray< Vector >( pDstData ) );
+				  CDmrArray< Vector > dest( pDstData );
+					if ( i == nSrcPositionIndex )
+					{
+						AppendData( CDmrArrayConst< Vector >( pSrcData ), dest, &pMat );
+					}
+					else if ( i == nSrcNormalIndex )
+					{
+						AppendData( CDmrArrayConst< Vector >( pSrcData ), dest, &nMat );
+					}
+					else
+					{
+						AppendData( CDmrArrayConst< Vector >( pSrcData ), dest );
+					}
 				}
 				break;
 			case AT_VECTOR4_ARRAY:
-				AppendData( CDmrArrayConst< Vector4D >( pSrcData ), CDmrArray< Vector4D >( pDstData ) );
+				{
+					CDmrArray< Vector4D > dest( pDstData );
+					AppendData( CDmrArrayConst< Vector4D >( pSrcData ), dest );
+				}
 				break;
 			case AT_QUATERNION_ARRAY:
-				AppendData( CDmrArrayConst< Quaternion >( pSrcData ), CDmrArray< Quaternion >( pDstData ) );
+				{
+					CDmrArray< Quaternion > dest( pDstData );
+					AppendData( CDmrArrayConst< Quaternion >( pSrcData ), dest );
+				}
 				break;
 			case AT_COLOR_ARRAY:
-				AppendData( CDmrArrayConst< Color >( pSrcData ), CDmrArray< Color >( pDstData ) );
+				{
+					CDmrArray< Color > dest( pDstData );
+					AppendData( CDmrArrayConst< Color >( pSrcData ), dest );
+				}
 				break;
 			default:
 				Assert( 0 );
@@ -1742,22 +1760,40 @@ void MergeDeltaState( CDmeMesh *pDmeMesh, CDmeVertexDeltaData *pSrcDelta, CDmeVe
 			switch ( pSrcData->GetType() )
 			{
 			case AT_FLOAT_ARRAY:
-				AppendData( CDmrArrayConst< float >( pSrcData ), CDmrArray< float >( pDstData ) );
+				{
+					CDmrArray< float > dest(pDstData);
+					AppendData( CDmrArrayConst< float >( pSrcData ), dest ); 
+				}
 				break;
 			case AT_VECTOR2_ARRAY:
-				AppendData( CDmrArrayConst< Vector2D >( pSrcData ), CDmrArray< Vector2D >( pDstData ) );
+				{
+					CDmrArray< Vector2D > dest(pDstData);
+					AppendData( CDmrArrayConst< Vector2D >( pSrcData ), dest );
+				}
 				break;
 			case AT_VECTOR3_ARRAY:
-				AppendData( CDmrArrayConst< Vector >( pSrcData ), CDmrArray< Vector >( pDstData ) );
+				{
+					CDmrArray< Vector > dest(pDstData);
+					AppendData( CDmrArrayConst< Vector >( pSrcData ), dest );
+				}
 				break;
 			case AT_VECTOR4_ARRAY:
-				AppendData( CDmrArrayConst< Vector4D >( pSrcData ), CDmrArray< Vector4D >( pDstData ) );
+				{
+					CDmrArray< Vector4D > dest(pDstData);
+					AppendData( CDmrArrayConst< Vector4D >( pSrcData ), dest );
+				}
 				break;
 			case AT_QUATERNION_ARRAY:
-				AppendData( CDmrArrayConst< Quaternion >( pSrcData ), CDmrArray< Quaternion >( pDstData ) );
+				{
+					CDmrArray< Quaternion > dest(pDstData);
+					AppendData( CDmrArrayConst< Quaternion >( pSrcData ), dest );
+				}
 				break;
 			case AT_COLOR_ARRAY:
-				AppendData( CDmrArrayConst< Color >( pSrcData ), CDmrArray< Color >( pDstData ) );
+				{
+					CDmrArray< Color > dest(pDstData);
+					AppendData( CDmrArrayConst< Color >( pSrcData ), dest );
+				}
 				break;
 			default:
 				Assert( 0 );

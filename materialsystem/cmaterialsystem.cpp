@@ -987,7 +987,7 @@ int CMaterialSystem::GetCurrentAdapter() const
 //-----------------------------------------------------------------------------
 // Returns the device name for the current adapter
 //-----------------------------------------------------------------------------
-char *CMaterialSystem::GetDisplayDeviceName() const 
+const char *CMaterialSystem::GetDisplayDeviceName() const
 {
 	return g_pShaderDevice->GetDisplayDeviceName();
 }

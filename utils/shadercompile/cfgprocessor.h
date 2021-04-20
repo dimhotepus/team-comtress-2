@@ -57,7 +57,7 @@ void DescribeConfiguration( CArrayAutoPtr < CfgEntryInfo > &rarrEntries );
 
 
 // Working with combos
-typedef struct {} * ComboHandle;
+typedef struct Combo__* ComboHandle;
 
 ComboHandle Combo_GetCombo( uint64 iCommandNumber );
 ComboHandle Combo_GetNext( uint64 &riCommandNumber, ComboHandle &rhCombo, uint64 iCommandEnd );

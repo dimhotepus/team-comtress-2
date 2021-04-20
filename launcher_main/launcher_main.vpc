@@ -25,7 +25,6 @@ $Macro OUTBINNAME	"hl2_linux64" [$LINUX64]
 
 $Include "$SRCDIR\vpc_scripts\source_exe_base.vpc"
 $Include "$SRCDIR\tier0\tier0_exclude.vpc" [$WINDOWS]
-$Include "$SRCDIR\tier1\tier1_exclude.vpc" [$WINDOWS]
 $Include "$SRCDIR\vstdlib\vstdlib_exclude.vpc" [$WINDOWS]
 
 $Configuration
@@ -87,13 +86,13 @@ $Configuration
 									"copy /B /Y $QUOTE$(TargetDir)$(TargetName).pdb$QUOTE $QUOTE$MAINOUTBINDIR\$OUTBINNAME.pdb$QUOTE" "\n" \
 									"if ERRORLEVEL 1 goto BuildEventFailed" "\n" "\n" \
 									"call $QUOTE$SRCDIR\vpc_scripts\valve_p4_edit.cmd$QUOTE $QUOTE$MAINOUTBINDIR\$OUTBINNAME.dat$QUOTE $QUOTE$SRCDIR$QUOTE" "\n" \
-									"$QUOTE$OUTBINDIR\newdat$QUOTE $QUOTE$MAINOUTBINDIR\$OUTBINNAME.exe$QUOTE" "\n" \
-									"goto BuildEventOK" "\n" "\n" \
+									"$QUOTE$OUTBINDIR\newdat.exe$QUOTE $QUOTE$MAINOUTBINDIR\$OUTBINNAME.exe$QUOTE" "\n" \
+									"if ERRORLEVEL 1 goto BuildEventFailed" "\n" "\n" \
+									"exit 0" "\n" "\n" \
 									":BuildEventFailed" "\n" \
 									"echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***" "\n" \
 									"del /q $QUOTE$(TargetPath)$QUOTE" "\n" \
-									"exit 1" "\n" "\n" \
-									":BuildEventOK" "\n"
+									"exit 1" "\n"
 	}
 }
 

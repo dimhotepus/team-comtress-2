@@ -2110,10 +2110,10 @@ void CBaseCombatWeapon::AddViewKick( void )
 //-----------------------------------------------------------------------------
 // Purpose: Get the string to print death notices with
 //-----------------------------------------------------------------------------
-char *CBaseCombatWeapon::GetDeathNoticeName( void )
+const char *CBaseCombatWeapon::GetDeathNoticeName( void )
 {
 #if !defined( CLIENT_DLL )
-	return (char*)STRING( m_iszName );
+	return STRING( m_iszName );
 #else
 	return "GetDeathNoticeName not implemented on client yet";
 #endif

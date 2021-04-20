@@ -1044,7 +1044,7 @@ void MergeDLightVis( directlight_t *dl, int cluster )
   LightForKey
   =============
 */
-int LightForKey (entity_t *ent, char *key, Vector& intensity )
+int LightForKey (entity_t *ent, const char *key, Vector& intensity )
 {
 	char *pLight;
 
@@ -1462,7 +1462,7 @@ void BuildVisForLightEnvironment( void )
 	}
 }
 
-static char *ValueForKeyWithDefault (entity_t *ent, char *key, char *default_value = NULL)
+static char *ValueForKeyWithDefault (entity_t *ent, const char *key, char *default_value = NULL)
 {
 	epair_t	*ep;
 	
